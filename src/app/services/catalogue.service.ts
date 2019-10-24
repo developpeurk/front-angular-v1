@@ -22,12 +22,12 @@ public host = 'http://localhost:8080';
     return  this.httpClient.delete( url );
   }
 
-  public addProduct(url, data): Observable <any> {
-    return this.httpClient.post(url, data);
+  public addProduct(url, data): Observable <ProductModel> {
+    return this.httpClient.post<ProductModel>(url, data);
   }
 
-  public getRessource(url): Observable<any> {
-      return this.httpClient.get(url);
+  public getRessource(url): Observable<ProductModel> {
+      return this.httpClient.get<ProductModel>(url);
   }
 
   public UpdateRssource(url, data) {
