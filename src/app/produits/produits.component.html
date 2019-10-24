@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Liste des produits</div>
+    <div class="panel-body">
+      <button class="btn btn-primary"(click) = "onGetProduct()">Produits</button>
+    </div>
+    <div class="panel-body">
+      <form #f= "ngForm" (ngSubmit)="onChercher(f.value)" >
+        <div class="form-group">
+          <label  class="control-label">keyword</label>
+          <input type="text" name="keyword" ngModel="">
+          <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </div>
+
+        <div [ngClass] = "test == 1 ?  'alert alert-success alert-dismissible' : ' fade show' " *ngIf="test" role="alert">
+          <strong>Holy guacamole!</strong> le produit est bien supprimé.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+
+      </form>
+      <table class="table table-striped" *ngIf="produits">
+        <thead>
+        <tr>
+          <th>ID</th><th>des</th><th>prix</th><th>Qte</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let p of produits._embedded.produits">
+          <td>{{ p.id }}</td>
+          <td>{{ p.designation }}</td>
+          <td>{{ p.price | number : '0.2' }}</td>
+          <td>{{ p.quantite }}</td>
+          <td><a class="btn btn-danger" (click)="onDeleteProduct(p)">Delete</a></td>
+          <td><a class="btn btn-warning" (click)="onEditProduct(p)">Edit</a></td>
+
+        </tr>
+        </tbody>
+      </table>
+      <ul *ngIf="pages" class="nav nav-pills">
+        <li [ngClass]=
+              "i==currentpage ? 'active' : '' " *ngFor="let p of pages; let i= index"
+
+              >
+          <a class="clickable" (click)="onPageProduct(i)">{{i}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+
+   // $('.alert').alert()
+
+
+</script>
